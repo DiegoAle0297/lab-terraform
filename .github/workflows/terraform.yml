@@ -1,9 +1,7 @@
 name: Terraform Plan
 
 on:
-  push:
-    branches:
-      - main  # Cambia "main" por el nombre de tu rama principal si es diferente
+ 
   pull_request:
     branches:
       - main  # Cambia "main" por el nombre de tu rama principal si es diferente
@@ -25,3 +23,10 @@ jobs:
 
       - name: Terraform plan
         run: terraform plan
+        
+      - name: Terraform validate
+        run: terraform validate
+
+      - name: Terraform format
+        run: terraform fmt --recursive .       
+        
