@@ -3,12 +3,12 @@ name: Terraform Apply
 on:
   push:
     branches:
-      - main  # Puedes ajustar esto según la rama en la que desees activar el pipeline
+      - main  # revisar que se agregue a la rama principal
 
 jobs:
   terraform_apply:
     name: Terraform Apply
-    runs-on: ubuntu-latest  # Puedes cambiar la imagen del runner según tus necesidades
+    runs-on: ubuntu-latest  # se puede cambiar la imagen a necesidad
 
     steps:
     - name: Checkout code
@@ -17,7 +17,7 @@ jobs:
     - name: Set up Terraform
       uses: hashicorp/setup-terraform@v1
       with:
-        terraform_version: 1.2.0  # Revisar que lña versión de terraform sea la misma
+        terraform_version: 1.2.0  # Revisar que la versión de terraform sea la misma
 
     - name: Terraform Init
       run: terraform init
