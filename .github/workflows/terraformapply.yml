@@ -1,36 +1,39 @@
-name: Terraform Apply
+name: Terraform Plan
 
 on:
+ 
   push:
     branches:
-      - main  # revisar que se agregue a la rama principal
+      - main  # Cambia "main" por el nombre de tu rama principal si es diferente
 
 jobs:
-  terraform_apply:
-    name: Terraform Apply
-    runs-on: ubuntu-latest  # se puede cambiar la imagen a necesidad
-
+  terraform:
+    runs-on: ubuntu-latest
     steps:
-
-    - name: Configure AWS Credentials
-      uses: aws-actions/configure-aws-credentials@v4
-      with:
+      - name: Configure AWS Credentials
+        uses: aws-actions/configure-aws-credentials@v4
+        with:
          aws-access-key-id: ${{ secrets.ACCESS_KEY_ID }}
          aws-secret-access-key: ${{ secrets.SECRET_ACCESS_KEY_ID }}
          aws-region: us-east-1
          
-    - name: Checkout code
-      uses: actions/checkout@v2
+      - name: Checkout code
+        uses: actions/checkout@v2
 
-    - name: Set up Terraform
-      uses: hashicorp/setup-terraform@v1
-      with:
-        terraform_version: 1.2.0  # Revisar que la versión de terraform sea la misma
+      - name: Setup Terraform
+        uses: hashicorp/setup-terraform@v1
+        with:
+          terraform_version: 1.2.0  # Cambia a la versión de Terraform que estés utilizando
 
-    - name: Terraform Init
-      run: |
-        terraform init -backend-config="backend.tf"
-        terraform workspace select default || terraform workspace new default
+      - name: Terraform init
+        run: terraform init
 
-    - name: Terraform Apply
-      run: terraform apply -auto-approve
+      - name: Terraform apply
+        run: terraform apply
+        
+      - name: Terraform validate
+        run: terraform validate
+
+      - name: Terraform format
+        run: terraform fmt --recursive .       
+        
