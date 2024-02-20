@@ -1,4 +1,4 @@
-name: Terraform Plan
+name: Terraform apply
 
 on:
  
@@ -28,12 +28,8 @@ jobs:
       - name: Terraform init
         run: terraform init
 
-      - name: Terraform apply
-        run: terraform apply
+      - name: Terraform apply -auto-approve
+        run: terraform apply -auto-approve
         
-      - name: Terraform validate
-        run: terraform validate
-
-      - name: Terraform format
-        run: terraform fmt --recursive .       
+            
         
