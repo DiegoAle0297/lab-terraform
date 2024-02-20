@@ -28,12 +28,13 @@ jobs:
       - name: Terraform init
         run: terraform init
 
-      - name: Terraform plan
-        run: terraform plan
-        
+      
       - name: Terraform validate
         run: terraform validate
 
       - name: Terraform format
-        run: terraform fmt --recursive .       
+        run: terraform fmt --recursive .  
+
+      - name: Terraform plan
+        run: terraform plan
         
