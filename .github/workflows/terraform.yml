@@ -1,0 +1,39 @@
+name: Terraform Plan
+
+on:
+ 
+  pull_request:
+    branches:
+      - main  # Cambia "main" por el nombre de tu rama principal si es diferente
+
+jobs:
+  terraform:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Configure AWS Credentials
+        uses: aws-actions/configure-aws-credentials@v4
+        with:
+         aws-access-key-id: ${{ secrets.ACCESS_KEY_ID }}
+         aws-secret-access-key: ${{ secrets.SECRET_ACCESS_KEY_ID }}
+         aws-region: us-east-1
+         
+      - name: Checkout code
+        uses: actions/checkout@v2
+
+      - name: Setup Terraform
+        uses: hashicorp/setup-terraform@v1
+        with:
+          terraform_version: 1.2.0  # Cambia a la versión de Terraform que estés utilizando
+
+      - name: Terraform init
+        run: terraform init
+
+      - name: Terraform plan
+        run: terraform plan
+        
+      - name: Terraform validate
+        run: terraform validate
+
+      - name: Terraform format
+        run: terraform fmt --recursive .       
+        
