@@ -28,7 +28,9 @@ jobs:
         terraform_version: 1.2.0  # Revisar que la versión de terraform sea la misma
 
     - name: Terraform Init
-      run: terraform init
+      run: |
+        terraform init -backend-config="backend.tf"
+        terraform workspace select default || terraform workspace new default
 
     - name: Terraform Apply
       run: terraform apply -auto-approve
