@@ -18,7 +18,7 @@ resource "aws_instance" "my_instance" {
   EOF
 
   # Asigna un Security Group que permita el tráfico HTTP (puerto 80) desde cualquier dirección
-  security_groups = ["allow-http"]
+  security_groups = [aws_security_group.http_sg.id]
 }
 
 # Crear un Security Group para permitir el tráfico HTTP
