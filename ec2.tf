@@ -1,6 +1,6 @@
 # Crear una instancia EC2
 resource "aws_instance" "my_instance" {
-  ami           = "ami-12345678"  # Especifica la AMI de tu elección
+  ami           = "ami-0440d3b780d96b29d"  # Especifica la AMI de tu elección
   instance_type = "t2.micro"      # Especifica el tipo de instancia
 
   subnet_id     = aws_subnet.laboratoriotf1.id  # Asigna la instancia a una de las subredes públicas creadas
@@ -25,6 +25,7 @@ resource "aws_instance" "my_instance" {
 resource "aws_security_group" "http_sg" {
   name        = "allow-http"
   description = "Allow HTTP traffic"
+  vpc_id      = aws_vpc.laboratoriotf.id
 
   ingress {
     from_port   = 80
