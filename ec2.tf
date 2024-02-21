@@ -25,6 +25,7 @@ resource "aws_instance" "my_instance" {
 resource "aws_security_group" "http_sg" {
   name        = "allow-http"
   description = "Allow HTTP traffic"
+  vpc_id      = aws_vpc.laboratoriotf.id
 
   ingress {
     from_port   = 80
