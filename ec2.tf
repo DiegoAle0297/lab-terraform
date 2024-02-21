@@ -4,7 +4,7 @@ resource "aws_instance" "my_instance" {
   instance_type = "t2.micro"      # Especifica el tipo de instancia
 
   subnet_id     = aws_subnet.laboratoriotf1.id  # Asigna la instancia a una de las subredes públicas creadas
-  key_name      = "my-key-pair"  # Especifica el nombre de tu par de claves SSH
+  # key_name      = "my-key-pair"  # Especifica el nombre de tu par de claves SSH
 
   # Configura los detalles de la instancia según tus necesidades
   # Por ejemplo, puedes especificar la configuración de usuario, almacenamiento, etc.
